@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class enemy : MonoBehaviour
 {
-    public int health = 1;
 
+    public int moveSpeed = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -16,16 +16,15 @@ public class enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
     }
 
-    public void takeDamage(int dmg)
+    void OnTriggerEnter2D(Collider2D c)
     {
-        health -= dmg;
-
-        if (health <= 0)
+        if(c.CompareTag("Wall"))
         {
-            Destroy(gameObject);
+            transform.position = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
+            moveSpeed *= -1;
         }
     }
 }

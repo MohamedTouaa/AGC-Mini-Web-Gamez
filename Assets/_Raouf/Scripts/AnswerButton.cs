@@ -25,11 +25,13 @@ public class AnswerButton : MonoBehaviour
 
     public void CheckCorrectAnswer()
     {
+        QuizManager.instance.DisableButtons();
         if (correct)
         {
+
             StartCoroutine(ChangeColor(Color.green, QuizManager.instance.right));
-            
-            
+
+            QuizManager.instance.UpadteScore(1);
         }
         else
         {
@@ -42,6 +44,6 @@ public class AnswerButton : MonoBehaviour
         source.PlayOneShot(clip, 1f);
         answerBackground.color = color;
         QuizManager.instance.LoadNewQuestion();
-        QuizManager.instance.UpadteScore(1);
+       
     }
 }

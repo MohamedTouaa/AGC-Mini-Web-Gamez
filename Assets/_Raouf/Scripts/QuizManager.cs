@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class QuizManager : MonoBehaviour
 {
@@ -124,6 +125,18 @@ public class QuizManager : MonoBehaviour
     public void LeaveGame()
     {
         quizCanva.SetActive(false);
+    }
+
+    public void DisableButtons()
+    {
+        foreach(Transform child in answersParent)
+        {
+            Button btn = child.GetComponent<Button>();
+            if (btn != null)
+            {
+                btn.interactable = false;
+            }
+        }
     }
 }
 

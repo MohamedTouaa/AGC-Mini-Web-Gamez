@@ -18,6 +18,9 @@ public class QuizManager : MonoBehaviour
 
     public GameObject quiz;
     public GameObject endMenu;
+    public TextMeshProUGUI finalText;
+    public AudioClip Wrong;
+    public AudioClip right;
 
 
     private void Awake()
@@ -78,7 +81,7 @@ public class QuizManager : MonoBehaviour
     public IEnumerator LoadNextQuestion()
     {
         questionNum++;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         
         if (questionNum >= questions.questions.Length)
         {
@@ -109,10 +112,18 @@ public class QuizManager : MonoBehaviour
         LoadQuestion(questionNum);
     }
 
+
     public void EndGame()
     {
+        finalText.text = "You scored: " + score + "/" + questions.questions.Length;
         endMenu.SetActive(true);
         quiz.SetActive(false);
+    }
+
+    public GameObject quizCanva;
+    public void LeaveGame()
+    {
+        quizCanva.SetActive(false);
     }
 }
 

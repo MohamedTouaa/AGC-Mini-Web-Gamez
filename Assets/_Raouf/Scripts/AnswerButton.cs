@@ -10,10 +10,11 @@ public class AnswerButton : MonoBehaviour
     public bool correct;
     public TextMeshProUGUI text;
     public Image answerBackground;
+    AudioSource source;
     // Start is called before the first frame update
     void Start()
     {
-        
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -26,19 +27,21 @@ public class AnswerButton : MonoBehaviour
     {
         if (correct)
         {
-            StartCoroutine(ChangeColor(Color.green));
-            QuizManager.instance.LoadNewQuestion();
-            QuizManager.instance.UpadteScore(1);
+            StartCoroutine(ChangeColor(Color.green, QuizManager.instance.right));
+            
+            
         }
         else
         {
-            StartCoroutine(ChangeColor(Color.red));
-            QuizManager.instance.LoadNewQuestion();
+            StartCoroutine(ChangeColor(Color.red, QuizManager.instance.Wrong));
         }
     }
-    IEnumerator ChangeColor(Color color)
+    IEnumerator ChangeColor(Color color, AudioClip clip)
     {
         yield return new WaitForSeconds(1f);
+        source.PlayOneShot(clip, 1f);
         answerBackground.color = color;
+        QuizManager.instance.LoadNewQuestion();
+        QuizManager.instance.UpadteScore(1);
     }
 }

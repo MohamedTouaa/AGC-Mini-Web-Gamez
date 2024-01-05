@@ -7,6 +7,9 @@ TagManager:
   - enemy
   - boundry
   - Wall
+  - NPC2
+  - NPC1
+  - NPC3
   layers:
   - Default
   - TransparentFX

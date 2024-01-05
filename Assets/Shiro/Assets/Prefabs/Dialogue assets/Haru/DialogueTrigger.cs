@@ -5,10 +5,10 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour
 {
     public ObjectDialogue dialogue;
-
-   public void triggerDialogue()
+    public string sceneToLoad;
+    public void triggerDialogue()
     {
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+        FindObjectOfType<DialogueManager>().StartDialogue(dialogue, sceneToLoad);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -21,11 +21,7 @@ public class DialogueTrigger : MonoBehaviour
         }
     }
 
-    void TriggerDialogue()
-    {
-        // Find the DialogueManager and start the dialogue
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
-    }
+    
 }
 
 

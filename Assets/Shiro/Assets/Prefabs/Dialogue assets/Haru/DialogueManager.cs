@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
 
     public Animator animator;
+
+    private string sceneToLoad;
 
     private Queue<string> sentences;
 
@@ -18,8 +21,9 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
     }
 
-    public void StartDialogue(ObjectDialogue dialogue)
-    {
+    public void StartDialogue(ObjectDialogue dialogue, string sceneToLoad)
+        {
+        this.sceneToLoad = sceneToLoad;
         animator.SetBool("IsOpen", true);
         nameText.text = dialogue.name;
 
@@ -35,7 +39,7 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-        if (sentences.Count == 0) 
+        if (sentences.Count == 0)
         {
             EndDialogue();
             return;
@@ -50,16 +54,20 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueText.text = "";
 
-        foreach(char letter in sentence.ToCharArray())    
+        foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
             yield return new WaitForSeconds(0.02f); ;
         }
     }
-    public void EndDialogue() 
+    public void EndDialogue()
     {
         Debug.Log("end of convo");
         animator.SetBool("IsOpen", false);
 
+        if (!string.IsNullOrEmpty(sceneToLoad))
+        {
+            SceneManager.LoadScene(sceneToLoad);
+        }
     }
 }

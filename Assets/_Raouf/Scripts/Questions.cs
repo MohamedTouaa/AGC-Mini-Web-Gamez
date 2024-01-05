@@ -89,7 +89,7 @@ public class Questions : MonoBehaviour
             {
                 new Answer { answer = "Non-Playable Character", correct = true },
                 new Answer { answer = "New Player Challenge", correct = false },
-                new Answer { answer = "Non-Profit Company", correct = false },
+                new Answer { answer = "IT", correct = true },
                 new Answer { answer = "Narrative Plot Control", correct = false },
             }
         },

@@ -22,7 +22,7 @@ public class QuizManager : MonoBehaviour
     public TextMeshProUGUI finalText;
     public AudioClip Wrong;
     public AudioClip right;
-
+    public TextMeshProUGUI questionBox;
 
     private void Awake()
     {
@@ -82,6 +82,7 @@ public class QuizManager : MonoBehaviour
     public IEnumerator LoadNextQuestion()
     {
         questionNum++;
+        questionBox.text = questionNum+"/"+questions.questions.Length;
         yield return new WaitForSeconds(3f);
         
         if (questionNum >= questions.questions.Length)
@@ -108,6 +109,7 @@ public class QuizManager : MonoBehaviour
         quiz.SetActive(true);
         score = 0;
         questionNum = 0;
+        questionBox.text = questionNum + "/" + questions.questions.Length;
         UpadteScore(0);
         endMenu.SetActive(false);
         LoadQuestion(questionNum);

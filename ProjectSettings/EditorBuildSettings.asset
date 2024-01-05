@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Shiro/Assets/Scenes/Main 3.unity
     guid: c3a87b6bc18515a44bf5032ddbf9f4ab
+  - enabled: 1
+    path: Assets/Shiro/Assets/Scenes/Main 5.unity
+    guid: dcbec737a0f5562499ddd95b4e2ae874
   m_configObjects: {}
